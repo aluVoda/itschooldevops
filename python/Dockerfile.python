@@ -1,0 +1,15 @@
+# Use Python as the base image
+FROM python:3.8-slim
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    lsb-release \
+    procps \
+    coreutils \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy the Python script into the container
+COPY python_monitor.py /usr/local/bin/python_monitor.py
+
+# Set the default command to run the Python script
+CMD ["python3", "-u", "/usr/local/bin/python_monitor.py"]
