@@ -1,0 +1,7 @@
+FROM python:3.10-slim
+
+RUN pip install --no-cache-dir psutil distro
+
+COPY python_monitor.py /app/python_monitor.py
+
+CMD ["python", "-u", "/app/python_monitor.py"]

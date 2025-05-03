@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  bash-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile.bash
+    container_name: bash_container
+    restart: unless-stopped
+    tty: true
+    logging:
+      driver: "json-file"
+
+  python-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    container_name: python_container
+    restart: unless-stopped
+    tty: true
+    logging:
+      driver: "json-file"
