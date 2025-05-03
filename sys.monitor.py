@@ -5,7 +5,7 @@ import platform
 import os
 from datetime import datetime
 import psutil
-import distro  # You might need to install this: pip install distro
+import distro  
 
 def print_system_info():
     print("=" * 60, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "=" * 60)
