@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Add user with sudo and docker group
+      user:
+        name: devopsuser
+        password: "{{ 'devopspass' | password_hash('sha512') }}"
+        groups: sudo,docker
+        append: yes
+        shell: /bin/bash
+
+    - name: Create docker-deployment directory
+      file:
+        path: /home/devopsuser/docker-deployment
+        state: directory
+        owner: devopsuser
+        group: devopsuser

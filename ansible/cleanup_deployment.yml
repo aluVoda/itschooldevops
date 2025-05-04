@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Remove user
+      user:
+        name: devopsuser
+        state: absent
+        remove: yes
+
+    - name: Remove docker-deployment directory
+      file:
+        path: /home/devopsuser/docker-deployment
+        state: absent

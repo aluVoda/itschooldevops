@@ -72,7 +72,13 @@ Create two scripts that run in an infinite loop and print system information eve
 ### Build & Run
 
 ```bash
+cd bash && docker build -t bash-monitor .
+cd ../python && docker build -t python-monitor .
+```
 
+```bash
+docker run --name bash-container bash-monitor
+docker run --name python-container python-monitor
 ```
 
 ---
@@ -88,8 +94,8 @@ Create two scripts that run in an infinite loop and print system information eve
 ### Run
 
 ```bash
+cd docker-deployment
 docker-compose build
-
 docker-compose up
 
 ```
@@ -115,7 +121,7 @@ docker logs -f python_script_container
 ### Run It
 
 ```bash
-
+ansible-playbook -i hosts.ini ansible/add_docker_user.yml
 ```
 
 ---
@@ -131,7 +137,7 @@ docker logs -f python_script_container
 ### Run It
 
 ```bash
-
+ansible-playbook -i hosts.ini ansible/deploy_docker_compose.yml
 ```
 
 ---
@@ -147,25 +153,22 @@ docker logs -f python_script_container
 ### Run It
 
 ```bash
-
+ansible-playbook -i hosts.ini ansible/cleanup_deployment.yml
 ```
 
 ---
 
-##  Requirements
+## Requirements
+- Docker & Docker Compose installed on host
+- Ansible installed
+- Python 3.8+ for running Ansible
+- SSH access to target host (localhost in this case)
 
-- Docker & Docker Compose installed on target host
-- Ansible installed on your control machine
-- SSH access to the host
-- `community.docker` collection:  
-  `ansible-galaxy collection install community.docker`
+## Testing Tips
+- Use `docker logs <container_name>` to view script output
+- Adjust interval in scripts to change monitoring frequency
+- Use `htop`, `df -h`, and `free -h` on host to verify output matches actual state
+- After Compose deploy, run `docker ps` to verify containers are running
 
----
-
-##  Testing Tips
-
-- Use `docker ps` and `docker logs` to verify running containers.
-- Use `id devopsuser` to check user and group membership.
-- Ensure `docker-compose` commands work as expected under `devopsuser`.
 
 ---

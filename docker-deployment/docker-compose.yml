@@ -3,7 +3,7 @@ version: '3.7'
 services:
   bash_script:
     build:
-      context: .
+      context: ../bash
       dockerfile: Dockerfile.bash
     container_name: bash_script_container
     restart: always
@@ -12,7 +12,7 @@ services:
 
   python_script:
     build:
-      context: .
+      context: ../python
       dockerfile: Dockerfile.python
     container_name: python_script_container
     restart: always

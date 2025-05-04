@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: true
+  vars:
+    ansible_user: devopsuser
+  tasks:
+    - name: Copy Docker Compose files
+      copy:
+        src: ../docker-deployment/
+        dest: /home/devopsuser/docker-deployment/
+        owner: devopsuser
+        group: devopsuser
+        mode: 0755
+
+    - name: Run Docker Compose up
+      community.docker.docker_compose:
+        project_src: /home/devopsuser/docker-deployment
+        state: present
