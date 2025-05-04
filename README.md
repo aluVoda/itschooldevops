@@ -58,14 +58,14 @@ Create two scripts that run in an infinite loop and print system information eve
 ### Bash Dockerfile
 
 ```dockerfile
-
+# bash/Dockerfile.bash
     will copy the Bash script into the container, and run it as the command.
 ```
 
 ### Python Dockerfile
 
 ```dockerfile
-
+# python/Dockerfile.python
     will copy the Python script into the container, and run it as the command.
 ```
 
